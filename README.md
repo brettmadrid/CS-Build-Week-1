@@ -1,11 +1,12 @@
 # CS Build Week 1
 
-For your first CS Build Week, you will be building an interactive ***Multi-User Dungeon (MUD)*** client and server in groups. To succeed with this project, you will be applying knowledge you've learned throughout the first part of CS to this project.
+For your first CS Build Week, you will be building an interactive **_Multi-User Dungeon (MUD)_** client and server in groups. To succeed with this project, you will be applying knowledge you've learned throughout the first part of CS to this project.
 
 You should treat this like a real-world job assignment with your instructor as the client. Like in the real world, you may not be given all the information you need to complete the assignment up front. It is your responsibility to understand the requirements and ask questions if anything is unclear (UPER) before jumping into the code.
 
 ### What is a MUD?
->A MUD...is a multiplayer real-time virtual world, usually text-based. MUDs combine elements of role-playing games, hack and slash, player versus player, interactive fiction, and online chat. Players can read or view descriptions of rooms, objects, other players, non-player characters, and actions performed in the virtual world. Players typically interact with each other and the world by typing commands that resemble a natural language. - Wikipedia
+
+> A MUD...is a multiplayer real-time virtual world, usually text-based. MUDs combine elements of role-playing games, hack and slash, player versus player, interactive fiction, and online chat. Players can read or view descriptions of rooms, objects, other players, non-player characters, and actions performed in the virtual world. Players typically interact with each other and the world by typing commands that resemble a natural language. - Wikipedia
 
 With the adventure game built in previous weeks, you have already created an application containing some of these elements (rooms, descriptions, objects, players, etc.). In this project, we will be expanding these worlds to be more interactive, provide new actions for players, display world info on a professional client site, and run the world's server on a hosted site to allow multi-player functionality.
 
@@ -15,9 +16,6 @@ For those who want an alternative to Django, we are offering a [Flask Alternativ
 
 Each team is responsible for building and deploying a functional MUD server, migrating a unique world onto that server, and creating a visualization and navigation client interface. We provide starter Django code with much of the server functionality implemented.
 
-
-
-
 ### Server
 
 #### 1. Learn Django
@@ -26,23 +24,23 @@ In Sprint 1, you learned a new language (Python) and built an interactive world 
 
 You may find these resources useful:
 
-* [Intro to Django github repo](https://github.com/LambdaSchool/Intro-Django)
-* [CS12: Intro to Django: Setup, Models, and Migrations](https://www.youtube.com/watch?v=5rfCWD0jB9U)
-* [CS12: Intro to Django: GraphQL and Graphene](https://www.youtube.com/watch?v=0qsOwWTo2wc)
-* [CS12: Intro to Django: REST and Users](https://www.youtube.com/watch?v=yMGUq3i1qBY)
-* [CS12: Intro to Django: Token Auth, GraphQL Mutations](https://www.youtube.com/watch?v=_8nTE2NE5tg)
-* [The official documentation](https://docs.djangoproject.com/en/2.2/intro/)
+- [Intro to Django github repo](https://github.com/LambdaSchool/Intro-Django)
+- [CS12: Intro to Django: Setup, Models, and Migrations](https://www.youtube.com/watch?v=5rfCWD0jB9U)
+- [CS12: Intro to Django: GraphQL and Graphene](https://www.youtube.com/watch?v=0qsOwWTo2wc)
+- [CS12: Intro to Django: REST and Users](https://www.youtube.com/watch?v=yMGUq3i1qBY)
+- [CS12: Intro to Django: Token Auth, GraphQL Mutations](https://www.youtube.com/watch?v=_8nTE2NE5tg)
+- [The official documentation](https://docs.djangoproject.com/en/2.2/intro/)
 
 #### 2. Deploy a LambdaMUD server using Django
 
-* Use the [sprint challenge instructions for Intro to Django](https://github.com/LambdaSchool/Sprint-Challenge--Django-I).
-* Add environment variables to heroku using `heroku config:set KEY=VALUE`
-  * It is recommended that if you are having trouble (e.g. 500 server errors) to set
+- Use the [sprint challenge instructions for Intro to Django](https://github.com/LambdaSchool/Sprint-Challenge--Django-I).
+- Add environment variables to heroku using `heroku config:set KEY=VALUE`
+  - It is recommended that if you are having trouble (e.g. 500 server errors) to set
     ```
     DEBUG=TRUE
     ```
     to get more information.
-* Run the code in create_world.py on your heroku server (`heroku run python manage.py shell`)
+- Run the code in create_world.py on your heroku server (`heroku run python manage.py shell`)
 
 You can consider Pusher websocket integration to be a stretch goal. Your server should interact with your team's client.
 
@@ -76,69 +74,75 @@ Your backend should implement a `rooms` endpoint which will return data for ever
 
 More on Pusher below.
 
-
 ## API Requirements
 
 These are implemented on the test server: `https://lambda-mud-test.herokuapp.com/`.
 
 ### Registration
-* `curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser", "password1":"testpassword", "password2":"testpassword"}' localhost:8000/api/registration/`
-* Response:
-  * `{"key":"6b7b9d0f33bd76e75b0a52433f268d3037e42e66"}`
+
+- `curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser", "password1":"testpassword", "password2":"testpassword"}' localhost:8000/api/registration/`
+- Response:
+  - `{"key":"6b7b9d0f33bd76e75b0a52433f268d3037e42e66"}`
 
 ### Login
-* Request:
-  * `curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser", "password":"testpassword"}' localhost:8000/api/login/`
-* Response:
-  * `{"key":"6b7b9d0f33bd76e75b0a52433f268d3037e42e66"}`
+
+- Request:
+  - `curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser", "password":"testpassword"}' localhost:8000/api/login/`
+- Response:
+  - `{"key":"6b7b9d0f33bd76e75b0a52433f268d3037e42e66"}`
 
 ### Initialize
-* Request:  (Replace token string with logged in user's auth token)
-  * `curl -X GET -H 'Authorization: Token 6b7b9d0f33bd76e75b0a52433f268d3037e42e66' localhost:8000/api/adv/init/`
-* Response:
-  * `{"uuid": "c3ee7f04-5137-427e-8591-7fcf0557dd7b", "name": "testuser", "title": "Outside Cave Entrance", "description": "North of you, the cave mount beckons", "players": []}`
+
+- Request: (Replace token string with logged in user's auth token)
+  - `curl -X GET -H 'Authorization: Token 6b7b9d0f33bd76e75b0a52433f268d3037e42e66' localhost:8000/api/adv/init/`
+- Response:
+  - `{"uuid": "c3ee7f04-5137-427e-8591-7fcf0557dd7b", "name": "testuser", "title": "Outside Cave Entrance", "description": "North of you, the cave mount beckons", "players": []}`
 
 ### Move
-* Request:  (Replace token string with logged in user's auth token)
-  * `curl -X POST -H 'Authorization: Token 6b7b9d0f33bd76e75b0a52433f268d3037e42e66' -H "Content-Type: application/json" -d '{"direction":"n"}' localhost:8000/api/adv/move/`
-* Response:
-  * `{"name": "testuser", "title": "Foyer", "description": "Dim light filters in from the south. Dusty\npassages run north and east.", "players": [], "error_msg": ""}`
-* Pusher broadcast (stretch):
-  * Players in previous room receive a message: `<name> has walked north.`
-  * Players in next room receive a message: `<name> has entered from the south.`
+
+- Request: (Replace token string with logged in user's auth token)
+  - `curl -X POST -H 'Authorization: Token 6b7b9d0f33bd76e75b0a52433f268d3037e42e66' -H "Content-Type: application/json" -d '{"direction":"n"}' localhost:8000/api/adv/move/`
+- Response:
+  - `{"name": "testuser", "title": "Foyer", "description": "Dim light filters in from the south. Dusty\npassages run north and east.", "players": [], "error_msg": ""}`
+- Pusher broadcast (stretch):
+  - Players in previous room receive a message: `<name> has walked north.`
+  - Players in next room receive a message: `<name> has entered from the south.`
 
 ### Say (stretch)
-* Request:  (Replace token string with logged in user's auth token)
-  * `curl -X POST -H 'Authorization: Token 6b7b9d0f33bd76e75b0a52433f268d3037e42e66' -H "Content-Type: application/json" -d '{"message":"Hello, world!"}' localhost:8000/api/adv/say/`
-* Pusher broadcast:
-  * Players in current room receive a message: `<name> says "Hello, world!"`
+
+- Request: (Replace token string with logged in user's auth token)
+  - `curl -X POST -H 'Authorization: Token 6b7b9d0f33bd76e75b0a52433f268d3037e42e66' -H "Content-Type: application/json" -d '{"message":"Hello, world!"}' localhost:8000/api/adv/say/`
+- Pusher broadcast:
+  - Players in current room receive a message: `<name> says "Hello, world!"`
 
 ## Pusher
 
 WebSocket is a computer communications protocol, providing full-duplex communication channels over a single TCP connection. You may use the Pusher service to handle the WebSocket connections as a stretch goal for your project. You can read more about them [here](https://pusher.com/websockets).
-
 
 ## Loading the server
 
 Note that all the Pusher parts are stretch.
 
 ### Set up a Pusher account
-* Sign up for a free account on pusher.com
-* Create a new app
-* Take note of your credentials
-  * app_id, key, secret, cluster
-* Look through the provided sample code and documentation
 
+- Sign up for a free account on pusher.com
+- Create a new app
+- Take note of your credentials
+  - app_id, key, secret, cluster
+- Look through the provided sample code and documentation
 
 ### Set up your local server
-* Set up your virtual environment
-  * `pipenv --three`
-  * `pipenv install`
-  * `pipenv shell`
 
-* Add your secret credentials
-  * Create `.env` in the root directory of your project
-  * Add your pusher credentials and secret key
+- Set up your virtual environment
+
+  - `pipenv --three`
+  - `pipenv install`
+  - `pipenv shell`
+
+- Add your secret credentials
+
+  - Create `.env` in the root directory of your project
+  - Add your pusher credentials and secret key
     ```
     SECRET_KEY='<your_secret_key>'
     DEBUG=True
@@ -148,23 +152,25 @@ Note that all the Pusher parts are stretch.
     PUSHER_CLUSTER=<your_pusher_cluster>
     ```
 
-* Run database migrations
-  * `./manage.py makemigrations`
-  * `./manage.py migrate`
+- Run database migrations
 
-* Add rooms to your database
-  * `./manage.py shell`
-  * Copy/paste the contents of `util/create_world.py` into the Python interpreter
-  * Exit the interpreter
+  - `./manage.py makemigrations`
+  - `./manage.py migrate`
 
-* Run the server
-  * `./manage.py runserver`
+- Add rooms to your database
+
+  - `./manage.py shell`
+  - Copy/paste the contents of `util/create_world.py` into the Python interpreter
+  - Exit the interpreter
+
+- Run the server
+  - `./manage.py runserver`
 
 ## FAQs and Troubleshooting
 
 ### 1. Can you show me an example of a map visualization?
 
-Here's a sample project created by [a team in CSPT2](https://confident-wright-ca0176.netlify.com): 
+Here's a sample project created by [a team in CSPT2](https://confident-wright-ca0176.netlify.com):
 
 ![Lambda MUD 1](img/pt2_lambdamud.png)
 
@@ -194,11 +200,9 @@ What data do you need to implement this? A list of rooms, their exits, maybe the
 
 I'll leave that to you to determine.
 
-
 ### 4. What is Pusher?
 
 Pusher is a cross-platform websocket library. This will allow you to turn your app into a real MUD with live push notifications to your client. You can consider integration to be a stretch goal but it's worth the effort if you have the time: websockets are powerful!
-
 
 ### 5. What will the `rooms` API endpoint look like?
 
@@ -208,3 +212,52 @@ It's up to you what data the request will return but the API request should be s
 curl -X GET -H 'Authorization: Token cc504e88ef659843b858d61c101ca9d4f0edf979' http://lambda-mud-test.herokuapp.com/api/adv/rooms/
 ```
 
+## Install to Django
+
+1. heroku login
+2. pipenv install gunicorn - The webserver for Heroku to use instead of the defualt Django one
+3. pipenv install psycopg2-binary - PostgreSQL client binaries
+4. pipenv install dj-database-url - enables parameterizeing database to allow to use SQLite locally and Heroku to use Postgres
+5. pipenv install whitenoise - optimizes use of static files if present
+6. pipenv shell - to start the virtual environments
+7. pip3 freeze > requirements.txt - This creates a requirements.txt file which is required if using the virtualenv (pipenv shell created a virtualenv)
+8. Create an .env file if not already created with the following:
+
+ALLOWED_HOSTS=localhost,127.0.0.1
+DEBUG=True
+SECRET_KEY=<secrec key val>
+DATABASE_URL="sqlite:///db.sqlite3"
+
+\*\* Note- These values should later be copied into the config variable in Heroku settings console and DEBUG=False and the DATABASE_URL the url of postgres
+
+9. pipenv install django - if it is not already installed.
+10. add 'from decouple import config' to settings.py - allows to make reference to env file
+11. add 'import dj_database_url' to settings.py. Allows for env use of database
+12. pipenv install python-decouple
+13. Change ALLOWED_HOSTS in the settings.py to: ALLOWED_HOSTS =
+14. Add to the DATABASES section of settings.py the following:
+
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+    DATABASES['default'] = dj_database_url.config(default='postgres//...')
+    DATABASES['default'] = dj_database_url.parse('postgres//...', conn_max_age=600)
+
+15. Create a Procfile and put in it the following:
+
+web: gunicorn <projectName>.wsgi --log-file -
+
+16. Edit settings.py and add WhiteNoise to the MIDDLEWARE_CLASSES just below SecurityMiddleware
+
+'whitenoise.middleware.WhiteNoiseMiddleware'
+
+17. add static settings to settings.py
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+18. In the Heroku CLI type: 'heroku create <your app>' - Creates app on Heroku
+19. In the Heroku CLI type: 'heroku addons:create heroku-postgresql:hobby-dev' - makes a Heroku postgres database and sets the environment variable
+20. Set Heroku config variables:
+
+ALLOWED_HOSTS=.herokuapp.com
+DEBUG=False
+SECRET_KEY=<secret key from env file>
